@@ -24,16 +24,20 @@ function getComputerChoice (random) {
 //requests player input
 playerSelection = prompt('Enter "Rock", "Paper", or "Scissors".')
 
+//trims and formats player selection
+
 function capitalize (x) {
-    firstLetter = x.charAt(0);
+    trimmed = x.trim();
+    console.log(trimmed);
+    firstLetter = trimmed.charAt(0);
     capLetter = firstLetter.toUpperCase(0);
-    restWord = x.slice(1,);
+    restWord = trimmed.slice(1,);
     lowLetters = restWord.toLowerCase();
     newWord = capLetter.concat (lowLetters);
     return newWord;
   }
 
-  function validatePlayerSelection ()
+  //function validatePlayerSelection ()
 
 
 
