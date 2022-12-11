@@ -1,2 +1,51 @@
 Rock Paper Scissors
 
+Steps:
+    1. fuction called getComputerChoice that will randomly return  ‘Rock’, ‘Paper’ or ‘Scissors’
+    2. function playRound that takes two parameters playerSelection and computerSelection and returns a string declaring the winner.
+        e.g. "You Lose! Paper beates Rock!"
+        return the result, don't just consol log it
+    3. function game() which calls playRound function inside to play a 5 round game that keeps socre and reports a winner or lose at the end
+    4. use prompt() to get input from the playerSelection
+
+Pseudo Code
+
+getComputerChoice
+    Randomly return "Rock", "Paper" or "Scissors"
+    RNG 1-3
+        1 computerSelection = Rock
+        2 computerSelection = Paper
+        3 computerSelection = Scissors
+computerSelection: from getComputerChoice
+playerSelection: Player makes a choice
+    convert input case
+    get rid of whitespace before or after
+        (eventually, make it three buttons)
+    try again if wrong word typed
+        if not equal to Rock or Paper or Scissors
+            "Please enter Rock, Paper, or Scissors"
+playRound: computer choice and player choice compared
+    same - try again
+    paper beats Rock
+        computerSelection = paper and playerSelection = rock computer wins
+        playerSelection = paper and computerSelection = rock player wins
+    rock beats Scissors
+        computerSelection = rock and playerSelection = scissors computer wins
+        playerSelection = rock and computerSelection = scissors player wins
+    scissors beat paper
+        computerSelection = scissors and playerSelection = paper computer wins
+        playerSelection = scissors and computerSelection = paper player wins
+Player wins 
+    add one to player score
+    "You Win! X beats X!"
+computer wins 
+    add one to computer score
+    "You lose! X beats X!"
+game()    
+    if playerscore = 3 player wins
+    if computerscore = 3 computer wins
+    else playRound again
+        iterate round number
+            initial value = 1
+
+
