@@ -37,10 +37,33 @@ function capitalize (x) {
     return newWord;
   }
 
-  //function validatePlayerSelection ()
+//function validatePlayerSelection ()
+
+function validatePlayerSelection (playerSelection) {
+  if (playerSelection == "Rock") {
+    poop = "Rock";
+    return poop;
+  }
+  else if (playerSelection == "Scissors") {
+    poop = "Scissors";
+    return poop;
+  } 
+  else if (playerSelection == "Paper") {
+    poop = "Paper";
+    return poop;
+  } else {
+    return "Try again";
+  }
+}
+
+
+//function playRound
+
+//function computerWins
+
+// function playerWins
+
+//function game: keeps track of score
 
 
 
-
-console.log(computerSelection);
-console.log(capitalize(playerSelection));
