@@ -16,6 +16,8 @@ computerChoice = getComputerChoice(random)
 //defines playerChoice
 playerChoice = getPlayerChoice(playerSelection)
 
+whoWon = playRound(computerChoice, playerChoice)
+
 //creates computer's random rock paper or scissor choice
 function getComputerChoice (random) {
     if (random == 1) {
@@ -62,24 +64,27 @@ function validatePlayerSelection (playerSelection) {
     return poop;
   } else {
     return "Try again";
+//logic bug. this causes player to show as winning
   }
 }
 
 console.log(computerChoice);
 console.log(playerChoice);
+console.log(playRound(computerChoice, playerChoice));
+//console.log(whoWon);
 
-//function playRound
+//function playRound: Plays one round of Rock Paper Scissors
 function playRound (computerChoice, playerChoice) {
   if (computerChoice == playerChoice) {
     return "It's a tie!!"
-  } else if (computerChoice == "Paper" && playerChoice == "Rock" || computerChoice == "Rock" && playerChoice == "Scissors" || computerChoice == "Scissors" && playerChoice == "Paper") {
-    return "Compuer wins!!"
+  } else if (computerChoice == "Paper" && playerChoice == "Rock" || computerChoice == "Rock" && playerChoice == "Scissors" || computerChoice == "Scissors" && playerChoice == "Paper")  {
+    return computerChoice + " beats " + playerChoice + "! Computer wins!!";
   } else {
-    return "You win!!"
+    return playerChoice + " beats " + computerChoice + "! You win!!";
   }
 }
 
-console.log(playRound(computerChoice, playerChoice));
+
 //function computerWins
 
 // function playerWins
