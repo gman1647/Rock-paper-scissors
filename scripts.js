@@ -4,11 +4,17 @@ console.log("Hello World");
 //define random number to use for computerSelection
 random = Math.floor(Math.random() * 3) + 1;
 
-//assign computerSelection
-computerSelection = getComputerChoice(random)
-
 //check rng
 console.log(random)
+
+//requests player input
+playerSelection = prompt('Enter "Rock", "Paper", or "Scissors".')
+
+//assign computerChoice
+computerChoice = getComputerChoice(random)
+
+//defines playerChoice
+playerChoice = getPlayerChoice(playerSelection)
 
 //creates computer's random rock paper or scissor choice
 function getComputerChoice (random) {
@@ -21,23 +27,14 @@ function getComputerChoice (random) {
     return computerSelection
 }
 
-//requests player input
-playerSelection = prompt('Enter "Rock", "Paper", or "Scissors".')
-
-console.log(playerSelection);
-
 // gets player's selection and formats it
-function getPlayerSelection(x) {
+function getPlayerChoice(x) {
   z = capitalize(x);
   y = validatePlayerSelection(z);
   return y;
   }
 
-//defines player choice
-playerChoice = getPlayerSelection(playerSelection)
-
-console.log(playerChoice);
-  //trims and formats player selection
+//trims and formats player selection
 
 function capitalize (x) {
     trimmed = x.trim();
@@ -49,7 +46,7 @@ function capitalize (x) {
     return newWord;
   }
 
-//function validatePlayerSelection ()
+//function validates that players input is entered correclty to compair with computer's choice
 
 function validatePlayerSelection (playerSelection) {
   if (playerSelection == "Rock") {
@@ -68,9 +65,21 @@ function validatePlayerSelection (playerSelection) {
   }
 }
 
+console.log(computerChoice);
+console.log(playerChoice);
 
 //function playRound
+function playRound (computerChoice, playerChoice) {
+  if (computerChoice == playerChoice) {
+    return "It's a tie!!"
+  } else if (computerChoice == "Paper" && playerChoice == "Rock" || computerChoice == "Rock" && playerChoice == "Scissors" || computerChoice == "Scissors" && playerChoice == "Paper") {
+    return "Compuer wins!!"
+  } else {
+    return "You win!!"
+  }
+}
 
+console.log(playRound(computerChoice, playerChoice));
 //function computerWins
 
 // function playerWins
