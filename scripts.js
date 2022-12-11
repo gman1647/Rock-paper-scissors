@@ -24,11 +24,23 @@ function getComputerChoice (random) {
 //requests player input
 playerSelection = prompt('Enter "Rock", "Paper", or "Scissors".')
 
-//trims and formats player selection
+console.log(playerSelection);
+
+// gets player's selection and formats it
+function getPlayerSelection(x) {
+  z = capitalize(x);
+  y = validatePlayerSelection(z);
+  return y;
+  }
+
+//defines player choice
+playerChoice = getPlayerSelection(playerSelection)
+
+console.log(playerChoice);
+  //trims and formats player selection
 
 function capitalize (x) {
     trimmed = x.trim();
-    console.log(trimmed);
     firstLetter = trimmed.charAt(0);
     capLetter = firstLetter.toUpperCase(0);
     restWord = trimmed.slice(1,);
@@ -63,7 +75,4 @@ function validatePlayerSelection (playerSelection) {
 
 // function playerWins
 
-//function game: keeps track of score
-
-
-
+//function game: keeps track of score 
