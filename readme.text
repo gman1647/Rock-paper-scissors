@@ -49,3 +49,27 @@ game()
             initial value = 1
 
 
+Variables
+    random
+    playerSelection
+    computerChoice
+    playerChoice
+    round
+    
+
+Functions
+    getComputerChoice
+    getPlayerChoice
+    capitalize
+    validatePlayerSelection
+    playRound
+    [whoWon]
+    playGame
+
+
+playGame needs to:
+    getComputerChoice
+    getPlayerChoice
+        capitalize  
+        validatePlayerSelection
+    playRound
