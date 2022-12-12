@@ -87,26 +87,26 @@ function playRound (computerChoice, playerChoice) {
 //function game: keeps track of score 
 
 function playGame () {
-  for (let i=0; i < 5; i++) {
+  for (let i=0, compScore = 0, playerScore = 0; i < 5; i++) {
     let random = Math.floor(Math.random() * 3) + 1;
     let computerChoice = getComputerChoice(random);
     let playerSelection = prompt('Enter "Rock", "Paper", or "Scissors".');
     let playerChoice = getPlayerChoice(playerSelection);
-    let playerScore = 0;
-    let compScore = 0;
     let round = playRound(computerChoice, playerChoice);
       if (round.slice(-3)== "n!!") {
+        playerScore += 1;
         console.log(playerScore);
         console.log("test 2");
       } else {
+        compScore += 1;
         console.log(compScore);
         console.log("test 1");
       }  
      // return "Player Score = " + playerScore + " Computer Score = " + compScore;
+     console.log("Player score: " + playerScore);
+     console.log("Computer score: " + compScore);
+    }
   }
-
-}
-console.log(playGame(computerChoice, playerChoice));
 
 //function computerWins
 
