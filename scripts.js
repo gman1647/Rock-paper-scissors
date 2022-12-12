@@ -2,21 +2,21 @@
 console.log("Hello World");
 
 //define random number to use for computerSelection
-random = Math.floor(Math.random() * 3) + 1;
+//let random = Math.floor(Math.random() * 3) + 1;
 
 //check rng
-console.log(random)
+//console.log(random)
 
 //requests player input
-playerSelection = prompt('Enter "Rock", "Paper", or "Scissors".')
+let playerSelection = prompt('Enter "Rock", "Paper", or "Scissors".')
 
 //assign computerChoice
-computerChoice = getComputerChoice(random)
+let computerChoice = getComputerChoice()
 
 //defines playerChoice
-playerChoice = getPlayerChoice(playerSelection)
+let playerChoice = getPlayerChoice(playerSelection)
 
-whoWon = playRound(computerChoice, playerChoice)
+//let round = playRound(computerChoice, playerChoice)
 
 //creates computer's random rock paper or scissor choice
 function getComputerChoice (random) {
@@ -52,25 +52,25 @@ function capitalize (x) {
 
 function validatePlayerSelection (playerSelection) {
   if (playerSelection == "Rock") {
-    poop = "Rock";
-    return poop;
+    playerSelection = "Rock";
+    return playerSelection;
   }
   else if (playerSelection == "Scissors") {
-    poop = "Scissors";
-    return poop;
+    playerSelection = "Scissors";
+    return playerSelection;
   } 
   else if (playerSelection == "Paper") {
-    poop = "Paper";
-    return poop;
+    playerSelection = "Paper";
+    return playerSelection;
   } else {
     return "Try again";
 //logic bug. this causes player to show as winning
   }
 }
 
-console.log(computerChoice);
-console.log(playerChoice);
-console.log(playRound(computerChoice, playerChoice));
+//console.log(computerChoice);
+//console.log(playerChoice);
+//console.log(playRound(computerChoice, playerChoice));
 //console.log(whoWon);
 
 //function playRound: Plays one round of Rock Paper Scissors
@@ -84,9 +84,31 @@ function playRound (computerChoice, playerChoice) {
   }
 }
 
+//function game: keeps track of score 
+
+function playGame () {
+  for (let i=0, compScore = 0, playerScore = 0; i < 5; i++) {
+    let random = Math.floor(Math.random() * 3) + 1;
+    let computerChoice = getComputerChoice(random);
+    let playerSelection = prompt('Enter "Rock", "Paper", or "Scissors".');
+    let playerChoice = getPlayerChoice(playerSelection);
+    let round = playRound(computerChoice, playerChoice);
+      if (round.slice(-3)== "n!!") {
+        playerScore += 1;
+        console.log(playerScore);
+        console.log("test 2");
+      } else {
+        compScore += 1;
+        console.log(compScore);
+        console.log("test 1");
+      }  
+     // return "Player Score = " + playerScore + " Computer Score = " + compScore;
+     console.log("Player score: " + playerScore);
+     console.log("Computer score: " + compScore);
+    }
+  }
 
 //function computerWins
 
 // function playerWins
 
-//function game: keeps track of score 
