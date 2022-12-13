@@ -79,10 +79,13 @@ function playRound () {
   console.log("Player " + playerChoice)
   console.log("Computer " + computerChoice)
   if (computerChoice == playerChoice) {
+    console.log("You both chose " + playerChoice + "!")
     return "tie"
   } else if (computerChoice == "Paper" && playerChoice == "Rock" || computerChoice == "Rock" && playerChoice == "Scissors" || computerChoice == "Scissors" && playerChoice == "Paper")  {
+    console.log(computerChoice + " beats " + playerChoice + "!! You lose!")
     return "compWin";
   } else if (playerChoice == "Paper" && computerChoice == "Rock" || playerChoice == "Rock" && computerChoice == "Scissors" || playerChoice == "Scissors" && computerChoice == "Paper") {
+    console.log(playerChoice + " beats " + computerChoice + "!! You win!!!")
     return "playerWin";
   } else {
     console.log("round broke")
