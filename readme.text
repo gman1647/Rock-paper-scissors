@@ -1,5 +1,9 @@
 Rock Paper Scissors
 
+Rock, Paper, Scissors game that produces a random selection by the computer and requests player input for each round. The game is played over five rounds with the winner being the one with the most wins. A game can end in a tie, as can each round. If there is a tie during a round, each player gets a point.
+This was a good project to learn basic JavaScript functions as well as the effects of scope on variables. I ran into issues with the player and computer score in the loop. Initially, I declared the variables in the loop, which made them inaccessible for determining the winner. Once they were declared outside of the function, things began to work as intened. Part of my confusion was due to previous variables not working inside of the functions as intended and having to move them inside the function to work properly. Again, this was due to my limited understanding of scope when I began the project.
+I plan to revisit this later to move the game from the console to an HTML page styled in CSS in the future.
+
 Steps:
     1. fuction called getComputerChoice that will randomly return  ‘Rock’, ‘Paper’ or ‘Scissors’
     2. function playRound that takes two parameters playerSelection and computerSelection and returns a string declaring the winner.
@@ -17,13 +21,13 @@ Done-getComputerChoice
         2 computerSelection = Paper
         3 computerSelection = Scissors
 Done-computerSelection: from getComputerChoice
-Done (one bug) playerSelection: Player makes a choice
+Done-playerSelection: Player makes a choice
     convert input case
     get rid of whitespace before or after
         (eventually, make it three buttons)
-    try again if wrong word typed
-        if not equal to Rock or Paper or Scissors
-            "Please enter Rock, Paper, or Scissors"
+    [Need to do: try again if wrong word typed
+                if not equal to Rock or Paper or Scissors
+                "Please enter Rock, Paper, or Scissors"]
 Done playRound: computer choice and player choice compared
     same - try again
     paper beats Rock
@@ -44,32 +48,6 @@ computer wins
 game()    
     if playerscore = 3 player wins
     if computerscore = 3 computer wins
-    else playRound again
-        iterate round number
-            initial value = 1
+    if same score = tie
 
 
-Variables
-    random
-    playerSelection
-    computerChoice
-    playerChoice
-    round
-    
-
-Functions
-    getComputerChoice
-    getPlayerChoice
-    capitalize
-    validatePlayerSelection
-    playRound
-    [whoWon]
-    playGame
-
-
-playGame needs to:
-    getComputerChoice
-    getPlayerChoice
-        capitalize  
-        validatePlayerSelection
-    playRound
