@@ -1,0 +1,24 @@
+* {
+    background-color: #1a1f26;
+}
+
+.buttons {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    margin: 20px;
+}
+
+img {
+    max-width: 200px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.playerBoard {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}

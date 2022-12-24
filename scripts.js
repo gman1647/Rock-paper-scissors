@@ -97,7 +97,7 @@ let playerScore = 0
 let compScore = 0
 
 function playGame () {
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 1; i++) {     //CHANGE THIS BACK!! CHANGED TO ONE ROUND FOR UI WORK
   round = playRound()
   console.log(round)
       if (round == "playerWin") {
@@ -128,4 +128,36 @@ for (let i = 0; i < 5; i++) {
   }
 }
 
-console.log(playGame());
+//console.log(playGame());
+
+const pageTitle = document.createElement('h1');
+pageTitle.textContent = "Rock, Paper, Scissors";
+pageTitle.style.color = "#f0ebdd";
+
+const playerUI = document.createElement('div');
+playerUI.classList.add('playerBoard')
+
+const rockButton = document.createElement('button');
+const rockPicture = document.createElement('img');
+rockButton.classList.add('buttons');
+rockPicture.src = './Images/rps_rock.png';
+
+const paperButton = document.createElement('button');
+const paperPicture = document.createElement('img');
+paperPicture.src = './Images/rps_paper.png'
+paperButton.classList.add('buttons');
+
+const scissorsButton = document.createElement('button');
+const scissorsPicture = document.createElement('img');
+scissorsPicture.src = './Images/rps_scissors_f0ebdd.png';
+scissorsButton.classList.add('buttons');
+
+document.body.appendChild(pageTitle);
+document.body.appendChild(playerUI);
+playerUI.appendChild(rockButton);
+playerUI.appendChild(paperButton);
+playerUI.appendChild(scissorsButton);
+rockButton.appendChild(rockPicture);
+scissorsButton.appendChild(scissorsPicture);
+paperButton.appendChild(paperPicture);
+
