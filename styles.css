@@ -24,5 +24,7 @@ h1 {
 }
 
 .clicked {
-    border: 3px solid #6795d6;
+    border: 3px solid #f0ebdd;
+    border-radius: 25px;
+    padding: 10px;
 }
