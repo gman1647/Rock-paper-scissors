@@ -161,3 +161,11 @@ rockButton.appendChild(rockPicture);
 scissorsButton.appendChild(scissorsPicture);
 paperButton.appendChild(paperPicture);
 
+const buttons = document.querySelectorAll('.buttons');
+
+buttons.forEach(buttons => {
+  buttons.addEventListener('click', function handleClick(event) {
+    alert('box clliked', event);
+    buttons.setAttribute('class', 'clicked');
+  });
+});
