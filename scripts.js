@@ -22,59 +22,15 @@ function getComputerChoice () {
 }
 
 //PLAYER CHOICE FUNCTIONS
+//let playerChoice = ""
 
-//requests player input
 
-function playerSelection(){
-  let playerSelection = prompt('Enter "Rock", "Paper", or "Scissors".')
-  return playerSelection;
-}
-
-// gets player's selection and formats it using capitalize function
-
-function getPlayerChoice(x) {
-  z = capitalize(x);
-  y = validatePlayerSelection(z);
-  return y;
-  }
-
-//trims and formats player selection
-
-function capitalize (x) {
-  trimmed = x.trim();
-  firstLetter = trimmed.charAt(0);
-  capLetter = firstLetter.toUpperCase(0);
-  restWord = trimmed.slice(1,);
-  lowLetters = restWord.toLowerCase();
-  newWord = capLetter.concat (lowLetters);
-  return newWord;
-}
-
-//function validates that players input is entered correclty to compair with computer's choice
-
-function validatePlayerSelection (playerSelection) {
-    if (playerSelection == "Rock") {
-    playerSelection = "Rock";
-    return playerSelection;
-  } else if (playerSelection == "Scissors") {
-    playerSelection = "Scissors";
-    return playerSelection;
-  } else if (playerSelection == "Paper") {
-    playerSelection = "Paper";
-    return playerSelection;
-  } else {
-    return "Error. Please refresh the page and try again.";
-//Possible logic bug. This appears to cause player to show as winning
-  }
-}
-
-//To get properly formated player selection: getPlayerChoice(playerSelection(validatePlayerSelection))
 
 //ROUND AND GAME FUNCTIONS
 
 //playRound: Plays one round of Rock Paper Scissors
 function playRound () {
-  let playerChoice = getPlayerChoice(playerSelection(validatePlayerSelection))
+//  let playerChoice = 
   let computerChoice = getComputerChoice()
   console.log("Player " + playerChoice)
   console.log("Computer " + computerChoice)
@@ -139,18 +95,22 @@ playerUI.classList.add('playerBoard')
 
 const rockButton = document.createElement('button');
 const rockPicture = document.createElement('img');
-rockButton.classList.add('buttons');
+rockButton.classList.add('buttons', 'rock');
+rockButton.setAttribute('id', 'rock')
 rockPicture.src = './Images/rps_rock.png';
+
 
 const paperButton = document.createElement('button');
 const paperPicture = document.createElement('img');
+paperButton.classList.add('buttons', 'paper');
+paperButton.setAttribute('id', 'paper');
 paperPicture.src = './Images/rps_paper.png'
-paperButton.classList.add('buttons');
 
 const scissorsButton = document.createElement('button');
 const scissorsPicture = document.createElement('img');
+scissorsButton.classList.add('buttons', 'scissors');
+scissorsButton.setAttribute('id', 'scissors')
 scissorsPicture.src = './Images/rps_scissors_f0ebdd.png';
-scissorsButton.classList.add('buttons');
 
 document.body.appendChild(pageTitle);
 document.body.appendChild(playerUI);
@@ -171,16 +131,25 @@ const buttons = document.querySelectorAll('.buttons');
 });*/
 
 rockButton.addEventListener('click', () => {
-  alert("You choose rock!");
   rockButton.setAttribute('class', 'clicked');
+  playerChoice = "Rock";
+  console.log(playerChoice)
 });
 
 paperButton.addEventListener('click', () => {
-  alert("You choose paper!");
-  paperButton.setAttribute('class', 'clicked');
+  paperButton.setAttribute('class', 'paperclicked');
+  playerChoice = "Paper";
+  console.log(playerChoice)
 });
 
 scissorsButton.addEventListener('click', () => {
-  alert("You choose scissors!");
   scissorsButton.setAttribute('class', 'clicked');
+  playerChoice = "Scissors";
+  console.log(playerChoice)
+});
+
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    alert(button.id);
+  });
 });
