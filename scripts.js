@@ -163,9 +163,24 @@ paperButton.appendChild(paperPicture);
 
 const buttons = document.querySelectorAll('.buttons');
 
-buttons.forEach(buttons => {
+/*buttons.forEach(buttons => {
   buttons.addEventListener('click', function handleClick(event) {
     alert('box clliked', event);
     buttons.setAttribute('class', 'clicked');
   });
+});*/
+
+rockButton.addEventListener('click', () => {
+  alert("You choose rock!");
+  rockButton.setAttribute('class', 'clicked');
+});
+
+paperButton.addEventListener('click', () => {
+  alert("You choose paper!");
+  paperButton.setAttribute('class', 'clicked');
+});
+
+scissorsButton.addEventListener('click', () => {
+  alert("You choose scissors!");
+  scissorsButton.setAttribute('class', 'clicked');
 });
