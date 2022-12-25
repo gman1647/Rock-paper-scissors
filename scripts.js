@@ -113,6 +113,9 @@ scissorsButton.addEventListener('click', () => {
 const roundResult = document.createElement('p');
 roundResult.classList.add('result');
 
+const roundResultChoices = document.createElement('p');
+roundResultChoices.classList.add('result');
+
 function playRound () {
   let playerChoice = playerInput;
   let computerChoice = getComputerChoice();
@@ -120,19 +123,25 @@ function playRound () {
  // console.log("Computer " + computerChoice)
   if (computerChoice == playerChoice) {
     console.log("You both chose " + playerChoice + "!")
+//`parentNode.insertBefore(newNode, referenceNode)`
     roundResult.textContent ="It was a tie!";
+    roundResultChoices.textContent ="You both chose " + playerChoice + "!";
     resultDisplay.appendChild(roundResult);
-
+    resultDisplay.appendChild(roundResultChoices);
     return "tie"
   } else if (computerChoice == "Paper" && playerChoice == "Rock" || computerChoice == "Rock" && playerChoice == "Scissors" || computerChoice == "Scissors" && playerChoice == "Paper")  {
     console.log(computerChoice + " beats " + playerChoice + "!! You lose!")
-    roundResult.textContent ="It was a tie!";
+    roundResult.textContent ="Computer Wins!";
+    roundResultChoices.textContent = computerChoice + " beats " + playerChoice + "!! You lose!";
     resultDisplay.appendChild(roundResult);
+    resultDisplay.appendChild(roundResultChoices);
     return "compWin";
   } else if (playerChoice == "Paper" && computerChoice == "Rock" || playerChoice == "Rock" && computerChoice == "Scissors" || playerChoice == "Scissors" && computerChoice == "Paper") {
     console.log(playerChoice + " beats " + computerChoice + "!! You win!!!")
-    roundResult.textContent ="It was a tie!";
+    roundResult.textContent ="Player Wins!";
+    roundResultChoices.textContent = playerChoice + " beats " + computerChoice + "!! You win!";;
     resultDisplay.appendChild(roundResult);
+    resultDisplay.appendChild(roundResultChoices);
     return "playerWin";
   } else {
     console.log("round broke")

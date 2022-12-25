@@ -74,4 +74,5 @@ h1 {
     color: #f0ebdd;
     text-align: center;
     font-size: 26px;
+    min-height: 30px;
 }
