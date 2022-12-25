@@ -1,7 +1,15 @@
 * {
     background-color: #1a1f26;
     box-sizing: border-box;
+    font-family: Avenir, "Noto Sans", "Proxima Nova", Montserrat, Arial;
 
+}
+
+.wrap-all{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .buttons {

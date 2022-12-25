@@ -22,16 +22,105 @@ function getComputerChoice () {
 }
 
 //PLAYER CHOICE FUNCTIONS
-//let playerChoice = ""
+let playerChoice = ""
 
+
+
+const pageTitle = document.createElement('h1');
+pageTitle.textContent = "Rock, Paper, Scissors";
+pageTitle.style.color = "#f0ebdd";
+
+const wrapperDiv = document.createElement('div');
+wrapperDiv.classList.add('wrap-all');
+
+const playerUI = document.createElement('div');
+playerUI.classList.add('playerBoard')
+
+const rockButton = document.createElement('button');
+const rockPicture = document.createElement('img');
+rockButton.classList.add('buttons', 'rock');
+rockButton.setAttribute('id', 'rock')
+rockPicture.src = './Images/rps_rock.png';
+
+
+const paperButton = document.createElement('button');
+const paperPicture = document.createElement('img');
+paperButton.classList.add('buttons', 'paper');
+paperButton.setAttribute('id', 'paper');
+paperPicture.src = './Images/rps_paper.png'
+
+const scissorsButton = document.createElement('button');
+const scissorsPicture = document.createElement('img');
+scissorsButton.classList.add('buttons', 'scissors');
+scissorsButton.setAttribute('id', 'scissors')
+scissorsPicture.src = './Images/rps_scissors_f0ebdd.png';
+
+const footer = document.createElement('div');
+footer.textContent = "© GBaughman, 2022";
+footer.style.color = "#f0ebdd";
+footer.style.textAlign = "center"
+
+document.body.appendChild(wrapperDiv);
+wrapperDiv.appendChild(pageTitle);
+wrapperDiv.appendChild(playerUI);
+playerUI.appendChild(rockButton);
+playerUI.appendChild(paperButton);
+playerUI.appendChild(scissorsButton);
+rockButton.appendChild(rockPicture);
+scissorsButton.appendChild(scissorsPicture);
+paperButton.appendChild(paperPicture);
+wrapperDiv.appendChild(footer);
+
+const buttons = document.querySelectorAll('.buttons');
+
+/*buttons.forEach(buttons => {
+  buttons.addEventListener('click', function handleClick(event) {
+    alert('box clliked', event);
+    buttons.setAttribute('class', 'clicked');
+  });
+});*/
+
+rockButton.addEventListener('click', () => {
+  rockButton.setAttribute('class', 'clicked');
+  //playerChoice = "Rock";
+  //console.log(playerChoice)
+});
+
+paperButton.addEventListener('click', () => {
+  paperButton.setAttribute('class', 'paperclicked');
+  //playerChoice = "Paper";
+  //console.log(playerChoice)
+});
+
+scissorsButton.addEventListener('click', () => {
+  scissorsButton.setAttribute('class', 'clicked');
+ // playerChoice = "Scissors";
+  //console.log(playerChoice)
+});
+
+// Gets player choiice for round of rps 
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    if (button.id == "rock") {
+      let playerChoice = "Rock";
+      console.log(playerChoice);
+    } else if (button.id == "paper") {
+      let playerChoice = "Paper";
+      console.log(playerChoice);
+    } else {
+      let playerChoice = "Scissors";
+      console.log(playerChoice);
+    }
+    return playerChoice;
+  });
+});
 
 
 //ROUND AND GAME FUNCTIONS
 
 //playRound: Plays one round of Rock Paper Scissors
 function playRound () {
-//  let playerChoice = 
-  let computerChoice = getComputerChoice()
+  let computerChoice = getComputerChoice();
   console.log("Player " + playerChoice)
   console.log("Computer " + computerChoice)
   if (computerChoice == playerChoice) {
@@ -46,7 +135,7 @@ function playRound () {
   } else {
     console.log("round broke")
   }
-}
+};
 
 //playGame: Plays a game for five rounds
 let playerScore = 0
@@ -84,72 +173,3 @@ for (let i = 0; i < 1; i++) {     //CHANGE THIS BACK!! CHANGED TO ONE ROUND FOR 
   }
 }
 
-//console.log(playGame());
-
-const pageTitle = document.createElement('h1');
-pageTitle.textContent = "Rock, Paper, Scissors";
-pageTitle.style.color = "#f0ebdd";
-
-const playerUI = document.createElement('div');
-playerUI.classList.add('playerBoard')
-
-const rockButton = document.createElement('button');
-const rockPicture = document.createElement('img');
-rockButton.classList.add('buttons', 'rock');
-rockButton.setAttribute('id', 'rock')
-rockPicture.src = './Images/rps_rock.png';
-
-
-const paperButton = document.createElement('button');
-const paperPicture = document.createElement('img');
-paperButton.classList.add('buttons', 'paper');
-paperButton.setAttribute('id', 'paper');
-paperPicture.src = './Images/rps_paper.png'
-
-const scissorsButton = document.createElement('button');
-const scissorsPicture = document.createElement('img');
-scissorsButton.classList.add('buttons', 'scissors');
-scissorsButton.setAttribute('id', 'scissors')
-scissorsPicture.src = './Images/rps_scissors_f0ebdd.png';
-
-document.body.appendChild(pageTitle);
-document.body.appendChild(playerUI);
-playerUI.appendChild(rockButton);
-playerUI.appendChild(paperButton);
-playerUI.appendChild(scissorsButton);
-rockButton.appendChild(rockPicture);
-scissorsButton.appendChild(scissorsPicture);
-paperButton.appendChild(paperPicture);
-
-const buttons = document.querySelectorAll('.buttons');
-
-/*buttons.forEach(buttons => {
-  buttons.addEventListener('click', function handleClick(event) {
-    alert('box clliked', event);
-    buttons.setAttribute('class', 'clicked');
-  });
-});*/
-
-rockButton.addEventListener('click', () => {
-  rockButton.setAttribute('class', 'clicked');
-  playerChoice = "Rock";
-  console.log(playerChoice)
-});
-
-paperButton.addEventListener('click', () => {
-  paperButton.setAttribute('class', 'paperclicked');
-  playerChoice = "Paper";
-  console.log(playerChoice)
-});
-
-scissorsButton.addEventListener('click', () => {
-  scissorsButton.setAttribute('class', 'clicked');
-  playerChoice = "Scissors";
-  console.log(playerChoice)
-});
-
-buttons.forEach((button) => {
-  button.addEventListener('click', () => {
-    alert(button.id);
-  });
-});
