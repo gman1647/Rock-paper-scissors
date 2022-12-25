@@ -60,6 +60,8 @@ scissorsButton.classList.add('buttons', 'scissors');
 scissorsButton.setAttribute('id', 'scissors')
 scissorsPicture.src = './Images/rps_scissors_f0ebdd.png';
 
+const resultDisplay = document.createElement('p');
+
 const footer = document.createElement('div');
 footer.textContent = "© GBaughman, 2022";
 footer.style.color = "#f0ebdd";
@@ -74,7 +76,9 @@ playerUI.appendChild(scissorsButton);
 rockButton.appendChild(rockPicture);
 scissorsButton.appendChild(scissorsPicture);
 paperButton.appendChild(paperPicture);
+wrapperDiv.appendChild(resultDisplay);
 wrapperDiv.appendChild(footer);
+
 
 const buttons = document.querySelectorAll('.buttons');
 
@@ -106,21 +110,29 @@ scissorsButton.addEventListener('click', () => {
 
 //playRound: Plays one round of Rock Paper Scissors
 
-
+const roundResult = document.createElement('p');
+roundResult.classList.add('result');
 
 function playRound () {
   let playerChoice = playerInput;
   let computerChoice = getComputerChoice();
-  console.log("Player " + playerChoice)
-  console.log("Computer " + computerChoice)
+ // console.log("Player " + playerChoice)
+ // console.log("Computer " + computerChoice)
   if (computerChoice == playerChoice) {
     console.log("You both chose " + playerChoice + "!")
+    roundResult.textContent ="It was a tie!";
+    resultDisplay.appendChild(roundResult);
+
     return "tie"
   } else if (computerChoice == "Paper" && playerChoice == "Rock" || computerChoice == "Rock" && playerChoice == "Scissors" || computerChoice == "Scissors" && playerChoice == "Paper")  {
     console.log(computerChoice + " beats " + playerChoice + "!! You lose!")
+    roundResult.textContent ="It was a tie!";
+    resultDisplay.appendChild(roundResult);
     return "compWin";
   } else if (playerChoice == "Paper" && computerChoice == "Rock" || playerChoice == "Rock" && computerChoice == "Scissors" || playerChoice == "Scissors" && computerChoice == "Paper") {
     console.log(playerChoice + " beats " + computerChoice + "!! You win!!!")
+    roundResult.textContent ="It was a tie!";
+    resultDisplay.appendChild(roundResult);
     return "playerWin";
   } else {
     console.log("round broke")
