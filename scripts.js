@@ -11,10 +11,13 @@ function getComputerChoice () {
   x = random()
   if (x == 1) {
     computerSelection = "Rock"
+    rockButton.appendChild(pcImage);
   } else if (x == 2) {
       computerSelection = "Scissors"
+      scissorsButton.appendChild(pcImage);
   } else if (x == 3) {
       computerSelection = "Paper"
+      paperButton.appendChild(pcImage);
   } else {
       console.log("Computer choice broke")
   }
@@ -24,7 +27,9 @@ function getComputerChoice () {
 //PLAYER CHOICE FUNCTIONS
 
 
-
+const pcImage = document.createElement('img');
+pcImage.classList.add('compPick')
+pcImage.src = './Images/rps_pc_f0ebdd_with_1a1f26_border.png';
 
 const pageTitle = document.createElement('h1');
 pageTitle.textContent = "Rock, Paper, Scissors";
@@ -73,13 +78,6 @@ wrapperDiv.appendChild(footer);
 
 const buttons = document.querySelectorAll('.buttons');
 
-/*buttons.forEach(buttons => {
-  buttons.addEventListener('click', function handleClick(event) {
-    alert('box clliked', event);
-    buttons.setAttribute('class', 'clicked');
-  });
-});*/
-
 let playerInput = ""
 
 /*rockButton.addEventListener('click', () => {
@@ -90,43 +88,19 @@ rockButton.addEventListener('click', () => {
   rockButton.setAttribute('class', 'clicked');
   playerInput = "Rock";
   playRound();
-  //console.log(playerChoice)
 });
 
 paperButton.addEventListener('click', () => {
   paperButton.setAttribute('class', 'paperclicked');
   playerInput  = "Paper";
   playRound();
-  //playerChoice = "Paper";
-  //console.log(playerChoice)
 });
 
 scissorsButton.addEventListener('click', () => {
   scissorsButton.setAttribute('class', 'clicked');
   playerInput = "Scissors";
   playRound();
- // playerChoice = "Scissors";
-  //console.log(playerChoice)
 });
-
-// Gets player choiice for round of rps 
-/*function getPlayerChoice() {
-buttons.forEach((button) => {
-  button.addEventListener('click', () => {
-    if (button.id == "rock") {
-      let playerChoice = "Rock";
-      console.log(playerChoice);
-    } else if (button.id == "paper") {
-      let playerChoice = "Paper";
-      console.log(playerChoice);
-    } else {
-      let playerChoice = "Scissors";
-      console.log(playerChoice);
-    }
-    return playerChoice;
-  });
-});
-}*/
 
 //ROUND AND GAME FUNCTIONS
 
