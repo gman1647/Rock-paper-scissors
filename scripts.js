@@ -22,7 +22,7 @@ function getComputerChoice () {
 }
 
 //PLAYER CHOICE FUNCTIONS
-let playerChoice = ""
+
 
 
 
@@ -80,25 +80,37 @@ const buttons = document.querySelectorAll('.buttons');
   });
 });*/
 
+let playerInput = ""
+
+/*rockButton.addEventListener('click', () => {
+  
+});*/
+
 rockButton.addEventListener('click', () => {
   rockButton.setAttribute('class', 'clicked');
-  //playerChoice = "Rock";
+  playerInput = "Rock";
+  playRound();
   //console.log(playerChoice)
 });
 
 paperButton.addEventListener('click', () => {
   paperButton.setAttribute('class', 'paperclicked');
+  playerInput  = "Paper";
+  playRound();
   //playerChoice = "Paper";
   //console.log(playerChoice)
 });
 
 scissorsButton.addEventListener('click', () => {
   scissorsButton.setAttribute('class', 'clicked');
+  playerInput = "Scissors";
+  playRound();
  // playerChoice = "Scissors";
   //console.log(playerChoice)
 });
 
 // Gets player choiice for round of rps 
+/*function getPlayerChoice() {
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
     if (button.id == "rock") {
@@ -114,12 +126,16 @@ buttons.forEach((button) => {
     return playerChoice;
   });
 });
-
+}*/
 
 //ROUND AND GAME FUNCTIONS
 
 //playRound: Plays one round of Rock Paper Scissors
+
+
+
 function playRound () {
+  let playerChoice = playerInput;
   let computerChoice = getComputerChoice();
   console.log("Player " + playerChoice)
   console.log("Computer " + computerChoice)
