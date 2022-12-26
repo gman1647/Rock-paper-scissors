@@ -5,11 +5,20 @@
 
 }
 
-.wrap-all{
+.wrap-all {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.startButton {
+    color: #f0ebdd;
+    font-size: 45px;
+    padding: 5px 15px;
+    margin: auto;
+    border: 5px solid #f0ebdd;
+    border-radius: 15px;
 }
 
 .buttons {
@@ -41,18 +50,10 @@ h1 {
 
 .scoreBoard {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
-/*.round, .score {
-    color: #1a1f26;
-    border: 1px solid #1a1f26;
-    border-radius: 5px;
-    padding: 5px;
-    background-color: #f0ebdd;
-
-}
-*/
 .round, .score {
     color: #f0ebdd;
     border: 1px solid #f0ebdd;

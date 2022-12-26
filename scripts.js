@@ -36,6 +36,10 @@ const pageTitle = document.createElement('h1');
 pageTitle.textContent = "Rock, Paper, Scissors";
 pageTitle.style.color = "#f0ebdd";
 
+const startButton = document.createElement('button');
+startButton.textContent = "Start Game";
+startButton.classList.add('startButton');
+
 const wrapperDiv = document.createElement('div');
 wrapperDiv.classList.add('wrap-all');
 
@@ -88,19 +92,7 @@ footer.style.textAlign = "center"
 
 document.body.appendChild(wrapperDiv);
 wrapperDiv.appendChild(pageTitle);
-wrapperDiv.appendChild(scoreBoard)
-scoreBoard.appendChild(round);
-scoreBoard.appendChild(scores);
-scores.appendChild(compScoreTracker);
-scores.appendChild(playerScoreTracker);
-wrapperDiv.appendChild(playerUI);
-playerUI.appendChild(rockButton);
-playerUI.appendChild(paperButton);
-playerUI.appendChild(scissorsButton);
-rockButton.appendChild(rockPicture);
-scissorsButton.appendChild(scissorsPicture);
-paperButton.appendChild(paperPicture);
-wrapperDiv.appendChild(resultDisplay);
+wrapperDiv.appendChild(startButton)
 wrapperDiv.appendChild(footer);
 
 
@@ -115,19 +107,16 @@ let playerInput = ""
 rockButton.addEventListener('click', () => {
   rockButton.setAttribute('class', 'clicked');
   playerInput = "Rock";
-  playRound();
 });
 
 paperButton.addEventListener('click', () => {
   paperButton.setAttribute('class', 'paperclicked');
   playerInput  = "Paper";
-  playRound();
 });
 
 scissorsButton.addEventListener('click', () => {
   scissorsButton.setAttribute('class', 'clicked');
   playerInput = "Scissors";
-  playRound();
 });
 
 //ROUND AND GAME FUNCTIONS
@@ -170,20 +159,20 @@ function playRound () {
 //playGame: Plays a game for five rounds
 
 function playGame () {
-for (let i = 0; i < 1; i++) {     //CHANGE THIS BACK!! CHANGED TO ONE ROUND FOR UI WORK
-  round = playRound()
-  console.log(round)
-      if (round == "playerWin") {
+for (let i = 0; i < 2; i++) {     //CHANGE THIS BACK!! CHANGED TO ONE ROUND FOR UI WORK
+  gameRound = playRound()
+  console.log(gameRound)
+      if (gameRound == "playerWin") {
         playerScore += 1;
         console.log("Round " + (i +1));
         console.log("Player Score: " + playerScore);
         console.log("Computer Score: " + compScore);
-      } else if (round == "compWin") {
+      } else if (gameRound == "compWin") {
         compScore += 1;
         console.log("Round " + (i + 1));
         console.log("Player Score: " + playerScore);
         console.log("Computer Score: " + compScore);
-      } else if (round == "tie") {
+      } else if (gameRound == "tie") {
         compScore += 1, playerScore += 1;
         console.log("Round " + (i + 1));
         console.log("Player Score: " + playerScore);
@@ -201,3 +190,21 @@ for (let i = 0; i < 1; i++) {     //CHANGE THIS BACK!! CHANGED TO ONE ROUND FOR 
   }
 }
 
+startButton.addEventListener('click', () => {
+wrapperDiv.removeChild(startButton);
+wrapperDiv.removeChild(footer);
+wrapperDiv.appendChild(scoreBoard);
+scoreBoard.appendChild(round);
+scoreBoard.appendChild(scores);
+scores.appendChild(compScoreTracker);
+scores.appendChild(playerScoreTracker);
+wrapperDiv.appendChild(playerUI);
+playerUI.appendChild(rockButton);
+playerUI.appendChild(paperButton);
+playerUI.appendChild(scissorsButton);
+rockButton.appendChild(rockPicture);
+scissorsButton.appendChild(scissorsPicture);
+paperButton.appendChild(paperPicture);
+wrapperDiv.appendChild(resultDisplay);
+wrapperDiv.appendChild(footer);
+});
