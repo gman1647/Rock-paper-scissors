@@ -39,6 +39,33 @@ h1 {
     flex-wrap: wrap;
 }
 
+.scoreBoard {
+    display: flex;
+    justify-content: space-between;
+}
+
+/*.round, .score {
+    color: #1a1f26;
+    border: 1px solid #1a1f26;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #f0ebdd;
+
+}
+*/
+.round, .score {
+    color: #f0ebdd;
+    border: 1px solid #f0ebdd;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #1a1f26;
+}
+
+
+.round {
+    padding: 30px 5px;
+}
+
 .paper {
     padding: 22.7345px 10px;
 }

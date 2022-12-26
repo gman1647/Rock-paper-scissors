@@ -25,7 +25,8 @@ function getComputerChoice () {
 }
 
 //PLAYER CHOICE FUNCTIONS
-
+let playerScore = 0;
+let compScore = 0;
 
 const pcImage = document.createElement('img');
 pcImage.classList.add('compPick')
@@ -37,6 +38,24 @@ pageTitle.style.color = "#f0ebdd";
 
 const wrapperDiv = document.createElement('div');
 wrapperDiv.classList.add('wrap-all');
+
+const scoreBoard = document.createElement('div');
+scoreBoard.classList.add('scoreBoard');
+
+const round = document.createElement('p');
+round.classList.add('round');
+round.textContent = "Round Number 1";
+
+const scores = document.createElement('div');
+
+
+const playerScoreTracker = document.createElement('p');
+playerScoreTracker.classList.add('score')
+playerScoreTracker.textContent = "Player Score: " + playerScore;
+
+const compScoreTracker = document.createElement('p');
+compScoreTracker.classList.add('score');
+compScoreTracker.textContent = "Computer Score: " + compScore;
 
 const playerUI = document.createElement('div');
 playerUI.classList.add('playerBoard')
@@ -69,6 +88,11 @@ footer.style.textAlign = "center"
 
 document.body.appendChild(wrapperDiv);
 wrapperDiv.appendChild(pageTitle);
+wrapperDiv.appendChild(scoreBoard)
+scoreBoard.appendChild(round);
+scoreBoard.appendChild(scores);
+scores.appendChild(compScoreTracker);
+scores.appendChild(playerScoreTracker);
 wrapperDiv.appendChild(playerUI);
 playerUI.appendChild(rockButton);
 playerUI.appendChild(paperButton);
@@ -144,8 +168,6 @@ function playRound () {
 };
 
 //playGame: Plays a game for five rounds
-let playerScore = 0
-let compScore = 0
 
 function playGame () {
 for (let i = 0; i < 1; i++) {     //CHANGE THIS BACK!! CHANGED TO ONE ROUND FOR UI WORK
