@@ -27,6 +27,11 @@ function getComputerChoice () {
 //PLAYER CHOICE FUNCTIONS
 let playerScore = 0;
 let compScore = 0;
+let roundNumber = 1;
+let roundChoice = '';
+let gameStarted = 'No'
+
+
 
 const pcImage = document.createElement('img');
 pcImage.classList.add('compPick')
@@ -48,7 +53,7 @@ scoreBoard.classList.add('scoreBoard');
 
 const round = document.createElement('p');
 round.classList.add('round');
-round.textContent = "Round Number 1";
+round.textContent = "Round Number " + roundNumber;
 
 const scores = document.createElement('div');
 
@@ -95,20 +100,33 @@ wrapperDiv.appendChild(pageTitle);
 wrapperDiv.appendChild(startButton)
 wrapperDiv.appendChild(footer);
 
+function gameStarter () {
+  if (gameStarted == "Yes") {
+    console.log('game already started')
+  } else {
+    gameStarted = "Yes";
+    playGame()
+  };
+}
 
 const buttons = document.querySelectorAll('.buttons');
 
 let playerInput = ""
 
 rockButton.addEventListener('click', () => {
+  console.log(roundNumber)
   paperButton.removeAttribute('class', 'paperClicked');
   paperButton.setAttribute('class', 'buttons');
   scissorsButton.removeAttribute('class', 'clicked');
   scissorsButton.setAttribute('class', 'buttons');
   rockButton.setAttribute('class', 'clicked');
+  playerInput = "Rock"
+  playRound()
+  gameStarter()
+
 //  rockButton.removeAttribute('class', 'hover');
-  playerInput = "Rock";
 });
+
 
 //TO DO Add hover function
 /*
@@ -127,7 +145,8 @@ paperButton.addEventListener('click', () => {
   rockButton.setAttribute('class', 'buttons');
   scissorsButton.removeAttribute('class', 'clicked');
   scissorsButton.setAttribute('class', 'buttons');
-  playerInput  = "Paper";
+  playerInput = "Paper"
+  playRound();
 });
 
 scissorsButton.addEventListener('click', () => {
@@ -136,12 +155,14 @@ scissorsButton.addEventListener('click', () => {
   rockButton.setAttribute('class', 'buttons');
   paperButton.removeAttribute('class', 'paperClicked');
   paperButton.setAttribute('class', 'buttons');
-  playerInput = "Scissors";
+  playerInput = 'Scissors';
+  playRound();
 });
 
 //ROUND AND GAME FUNCTIONS
 
 //playRound: Plays one round of Rock Paper Scissors
+let roundStatus ='';
 
 const roundResult = document.createElement('p');
 roundResult.classList.add('result');
@@ -153,62 +174,46 @@ function playRound () {
   let playerChoice = playerInput;
   let computerChoice = getComputerChoice();
   if (computerChoice == playerChoice) {
-    console.log("You both chose " + playerChoice + "!")
     roundResult.textContent ="It was a tie!";
     roundResultChoices.textContent ="You both chose " + playerChoice + "!";
     resultDisplay.appendChild(roundResult);
     resultDisplay.appendChild(roundResultChoices);
-    return "tie"
+    roundStatus = "Tie"
   } else if (computerChoice == "Paper" && playerChoice == "Rock" || computerChoice == "Rock" && playerChoice == "Scissors" || computerChoice == "Scissors" && playerChoice == "Paper")  {
     roundResult.textContent ="Computer Wins!";
     roundResultChoices.textContent = computerChoice + " beats " + playerChoice + "!! You lose!";
     resultDisplay.appendChild(roundResult);
     resultDisplay.appendChild(roundResultChoices);
-    return "compWin";
+    roundStatus = 'compWin'
   } else if (playerChoice == "Paper" && computerChoice == "Rock" || playerChoice == "Rock" && computerChoice == "Scissors" || playerChoice == "Scissors" && computerChoice == "Paper") {
     roundResult.textContent ="Player Wins!";
     roundResultChoices.textContent = playerChoice + " beats " + computerChoice + "!! You win!";;
     resultDisplay.appendChild(roundResult);
-    resultDisplay.appendChild(roundResultChoices);
-    return "playerWin";
+    roundStatus = 'playerWin'
   } else {
     console.log("round broke")
-  }
+  } return roundStatus;
 };
 
 //playGame: Plays a game for five rounds
 
 function playGame () {
-for (let i = 0; i < 2; i++) {     //CHANGE THIS BACK!! CHANGED TO ONE ROUND FOR UI WORK
-  gameRound = playRound()
-  console.log(gameRound)
-      if (gameRound == "playerWin") {
-        playerScore += 1;
-        console.log("Round " + (i +1));
-        console.log("Player Score: " + playerScore);
-        console.log("Computer Score: " + compScore);
-      } else if (gameRound == "compWin") {
-        compScore += 1;
-        console.log("Round " + (i + 1));
-        console.log("Player Score: " + playerScore);
-        console.log("Computer Score: " + compScore);
-      } else if (gameRound == "tie") {
-        compScore += 1, playerScore += 1;
-        console.log("Round " + (i + 1));
-        console.log("Player Score: " + playerScore);
-        console.log("Computer Score: " + compScore);
-      } else {
-        console.log("something broke")
-      }
-  }
+  console.log("Game Started")
+  roundNumber += 1;
+  console.log(roundNumber)
+  return roundNumber;
+  //something like this while it waits, I think, then each round can increment the round number and keep score from there. 
+  // didn't work. Made an infinte loop. Need to add an event listener, maybe?
+}
+
+/*
   if (compScore > playerScore) {
     console.log("Computer Wins!!");
   } else if (playerScore > compScore) {
     console.log("Player Wins!!");
   } else {
     console.log("Looks Like a Tie!!")
-  }
-}
+  }*/
 
 
 startButton.addEventListener('click', () => {
@@ -228,4 +233,5 @@ scissorsButton.appendChild(scissorsPicture);
 paperButton.appendChild(paperPicture);
 wrapperDiv.appendChild(resultDisplay);
 wrapperDiv.appendChild(footer);
+console.log(gameStarted)
 });
