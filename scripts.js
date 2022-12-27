@@ -100,22 +100,42 @@ const buttons = document.querySelectorAll('.buttons');
 
 let playerInput = ""
 
-/*rockButton.addEventListener('click', () => {
-  
-});*/
-
 rockButton.addEventListener('click', () => {
+  paperButton.removeAttribute('class', 'paperClicked');
+  paperButton.setAttribute('class', 'buttons');
+  scissorsButton.removeAttribute('class', 'clicked');
+  scissorsButton.setAttribute('class', 'buttons');
   rockButton.setAttribute('class', 'clicked');
+//  rockButton.removeAttribute('class', 'hover');
   playerInput = "Rock";
 });
 
+//TO DO Add hover function
+/*
+rockButton.addEventListener('mouseover',() => {
+  rockButton.setAttribute('class', 'hover');
+})
+
+rockButton.addEventListener('mouseleave', () => {
+  rockButton.removeAttribute('class', 'hover');
+})
+*/
+
 paperButton.addEventListener('click', () => {
   paperButton.setAttribute('class', 'paperclicked');
+  rockButton.removeAttribute('class', 'clicked');
+  rockButton.setAttribute('class', 'buttons');
+  scissorsButton.removeAttribute('class', 'clicked');
+  scissorsButton.setAttribute('class', 'buttons');
   playerInput  = "Paper";
 });
 
 scissorsButton.addEventListener('click', () => {
   scissorsButton.setAttribute('class', 'clicked');
+  rockButton.removeAttribute('class', 'clicked');
+  rockButton.setAttribute('class', 'buttons');
+  paperButton.removeAttribute('class', 'paperClicked');
+  paperButton.setAttribute('class', 'buttons');
   playerInput = "Scissors";
 });
 
@@ -189,6 +209,7 @@ for (let i = 0; i < 2; i++) {     //CHANGE THIS BACK!! CHANGED TO ONE ROUND FOR 
     console.log("Looks Like a Tie!!")
   }
 }
+
 
 startButton.addEventListener('click', () => {
 wrapperDiv.removeChild(startButton);
