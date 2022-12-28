@@ -105,8 +105,24 @@ h1 {
     left: 60px;
 }
 
+.compPickRemove {
+    max-width: 1px;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+}
+
 .result {
     color: #f0ebdd;
     text-align: center;
     font-size: 26px;
+}
+
+.gameOver {
+    color:#f0ebdd;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 900;
+    border: 5px solid #f0ebdd;
+    border-radius: 10px;
 }

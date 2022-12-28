@@ -64,3 +64,16 @@ You will likely have to refactor (rework/rewrite) your original code to make it 
 
 
 so click event (#1)> show result > end of Round 1 > the waiting phase (another round only starts if P1 clicks a button) > repeat from (#1). 
+
+So add that textContent line inside the roundTracker function
+[11:00 PM]
+right after you update roundNumber
+
+That was just a quick fix. Consider separating the logic from the DOM manipulation code.
+roundNumber += 1 is part of the game logic. The rest deals with manipulating the DOM. Try separating them when you refactor your code.
+
+
+remove scoreboard
+remove p with round results
+remove RPS picture formatting
+Add winner declaration above RPS picture

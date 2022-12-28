@@ -57,13 +57,7 @@ scoreBoard.classList.add('scoreBoard');
 const scores = document.createElement('div');
 
 
-const playerScoreTracker = document.createElement('p');
-playerScoreTracker.classList.add('score')
-playerScoreTracker.textContent = "Player Score: " + playerScore;
 
-const compScoreTracker = document.createElement('p');
-compScoreTracker.classList.add('score');
-compScoreTracker.textContent = "Computer Score: " + compScore;
 
 const playerUI = document.createElement('div');
 playerUI.classList.add('playerBoard')
@@ -113,7 +107,6 @@ const buttons = document.querySelectorAll('.buttons');
 let playerInput = ""
 
 rockButton.addEventListener('click', () => {
-  console.log(roundNumber)
   paperButton.removeAttribute('class', 'paperClicked');
   paperButton.setAttribute('class', 'buttons');
   scissorsButton.removeAttribute('class', 'clicked');
@@ -147,8 +140,9 @@ paperButton.addEventListener('click', () => {
   scissorsButton.removeAttribute('class', 'clicked');
   scissorsButton.setAttribute('class', 'buttons');
   playerInput = "Paper"
-  playRound()
-  gameStarter()
+  playRound();
+  roundTracker();
+  scoring();
 });
 
 scissorsButton.addEventListener('click', () => {
@@ -158,8 +152,9 @@ scissorsButton.addEventListener('click', () => {
   paperButton.removeAttribute('class', 'paperClicked');
   paperButton.setAttribute('class', 'buttons');
   playerInput = 'Scissors';
-  playRound()
-  gameStarter()
+  playRound();
+  roundTracker();
+  scoring();
 });
 
 //ROUND AND GAME FUNCTIONS
@@ -200,17 +195,15 @@ function playRound () {
 
 //playGame: Plays a game for five rounds
 
-//something like this while it waits, I think, then each round can increment the round number and keep score from there. 
-// didn't work. Made an infinte loop. Need to add an event listener, maybe?
-
-
 function roundTracker () {
-  scoreBoard.removeChild(round);
-  roundNumber += 1;
-  round.textContent = "Round Number " + roundNumber;
-  scoreBoard.appendChild(round)
-  return roundNumber;
-};
+  if (roundNumber < 5) {
+    roundNumber += 1;
+    round.textContent = "Round Number " + roundNumber;
+    return roundNumber;
+  } else {
+    gameOver();
+};  
+}
 
 let round = document.createElement('p');
 round.classList.add('round');
@@ -218,36 +211,60 @@ round.textContent = "Round Number " + roundNumber;
 
 
 function scoring () {
-  console.log(playerScore, compScore);
   if (roundStatus == "Tie") {
-    console.log('no points awarded');
-    console.log(playerScore, compScore)
   } else if (roundStatus == "compWin") {
     compScore += 1;
-    console.log(playerScore, compScore)
+    compScoreTracker.textContent = 'Computer Score: ' + compScore;
     return compScore
   } else if (roundStatus == "playerWin") {
     playerScore += 1
-    console.log(playerScore, compScore)
+    playerScoreTracker.textContent = "Player Score: " + playerScore;
     return playerScore;
   }
   }
 
+  const playerScoreTracker = document.createElement('p');
+  playerScoreTracker.classList.add('score')
+  playerScoreTracker.textContent = "Player Score: " + playerScore;
+  
+  const compScoreTracker = document.createElement('p');
+  compScoreTracker.classList.add('score');
+  compScoreTracker.textContent = "Computer Score: " + compScore;
 
-function tieScores () {
-
-}
-/*
-
+function gameOver () {
+  wrapperDiv.removeChild(scoreBoard);
+  wrapperDiv.removeChild(resultDisplay);
+/*  scissorsButton.removeAttribute('class', 'clicked');
+  scissorsButton.setAttribute('class', 'buttons');
+  rockButton.removeAttribute('class', 'clicked');
+  rockButton.setAttribute('class', 'buttons');
+  paperButton.removeAttribute('class', 'paperClicked');
+  paperButton.setAttribute('class', 'buttons');
+  pcImage.classList.remove('compPick')
+  pcImage.classList.add('compPickRemove');  */
+  const gameOverText = document.createElement('p');
+  gameOverText.textContent = 'Game Over';
+  wrapperDiv.insertBefore(gameOverText, playerUI);
+  gameOverText.classList.add('gameOver');
+  console.log("Game Over")
   if (compScore > playerScore) {
-    console.log("Computer Wins!!");
+    const gameOverResults = document.createElement('p');
+    gameOverResults.textContent = 'Computer Wins ' + compScore + " to " + playerScore;
+    gameOverResults.classList.add('result');
+    wrapperDiv.insertBefore(gameOverResults, footer);
   } else if (playerScore > compScore) {
-    console.log("Player Wins!!");
+    const gameOverResults = document.createElement('p');
+    gameOverResults.textContent = 'You WIN!! ' + playerScore + " to " + compScore;
+    gameOverResults.classList.add('result');
+    wrapperDiv.insertBefore(gameOverResults, footer);
   } else {
-    console.log("Looks Like a Tie!!")
+    const gameOverResults = document.createElement('p');
+    gameOverResults.textContent = 'It\'s a tie!';
+    gameOverResults.classList.add('result');
+    wrapperDiv.insertBefore(gameOverResults, footer);
   }
-};
-*/
+}
+
 startButton.addEventListener('click', () => {
 wrapperDiv.removeChild(startButton);
 wrapperDiv.removeChild(footer);
@@ -265,5 +282,4 @@ scissorsButton.appendChild(scissorsPicture);
 paperButton.appendChild(paperPicture);
 wrapperDiv.appendChild(resultDisplay);
 wrapperDiv.appendChild(footer);
-console.log(gameStarted)
 });
