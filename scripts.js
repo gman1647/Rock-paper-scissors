@@ -29,7 +29,8 @@ let playerScore = 0;
 let compScore = 0;
 let roundNumber = 1;
 let roundChoice = '';
-let gameStarted = 'No'
+let roundStatus = '';
+let gameStarted = 'No';
 
 
 
@@ -51,9 +52,7 @@ wrapperDiv.classList.add('wrap-all');
 const scoreBoard = document.createElement('div');
 scoreBoard.classList.add('scoreBoard');
 
-const round = document.createElement('p');
-round.classList.add('round');
-round.textContent = "Round Number " + roundNumber;
+
 
 const scores = document.createElement('div');
 
@@ -99,7 +98,7 @@ document.body.appendChild(wrapperDiv);
 wrapperDiv.appendChild(pageTitle);
 wrapperDiv.appendChild(startButton)
 wrapperDiv.appendChild(footer);
-
+/*
 function gameStarter () {
   if (gameStarted == "Yes") {
     console.log('game already started')
@@ -108,7 +107,7 @@ function gameStarter () {
     playGame()
   };
 }
-
+*/
 const buttons = document.querySelectorAll('.buttons');
 
 let playerInput = ""
@@ -121,8 +120,10 @@ rockButton.addEventListener('click', () => {
   scissorsButton.setAttribute('class', 'buttons');
   rockButton.setAttribute('class', 'clicked');
   playerInput = "Rock"
-  playRound()
-  gameStarter()
+  playRound();
+  roundTracker();
+  scoring();
+
 
 //  rockButton.removeAttribute('class', 'hover');
 });
@@ -146,7 +147,8 @@ paperButton.addEventListener('click', () => {
   scissorsButton.removeAttribute('class', 'clicked');
   scissorsButton.setAttribute('class', 'buttons');
   playerInput = "Paper"
-  playRound();
+  playRound()
+  gameStarter()
 });
 
 scissorsButton.addEventListener('click', () => {
@@ -156,13 +158,14 @@ scissorsButton.addEventListener('click', () => {
   paperButton.removeAttribute('class', 'paperClicked');
   paperButton.setAttribute('class', 'buttons');
   playerInput = 'Scissors';
-  playRound();
+  playRound()
+  gameStarter()
 });
 
 //ROUND AND GAME FUNCTIONS
 
 //playRound: Plays one round of Rock Paper Scissors
-let roundStatus ='';
+
 
 const roundResult = document.createElement('p');
 roundResult.classList.add('result');
@@ -197,25 +200,54 @@ function playRound () {
 
 //playGame: Plays a game for five rounds
 
-function playGame () {
-  console.log("Game Started")
-  roundNumber += 1;
-  console.log(roundNumber)
-  return roundNumber;
-  //something like this while it waits, I think, then each round can increment the round number and keep score from there. 
-  // didn't work. Made an infinte loop. Need to add an event listener, maybe?
-}
+//something like this while it waits, I think, then each round can increment the round number and keep score from there. 
+// didn't work. Made an infinte loop. Need to add an event listener, maybe?
 
+
+function roundTracker () {
+  scoreBoard.removeChild(round);
+  roundNumber += 1;
+  round.textContent = "Round Number " + roundNumber;
+  scoreBoard.appendChild(round)
+  return roundNumber;
+};
+
+let round = document.createElement('p');
+round.classList.add('round');
+round.textContent = "Round Number " + roundNumber;
+
+
+function scoring () {
+  console.log(playerScore, compScore);
+  if (roundStatus == "Tie") {
+    console.log('no points awarded');
+    console.log(playerScore, compScore)
+  } else if (roundStatus == "compWin") {
+    compScore += 1;
+    console.log(playerScore, compScore)
+    return compScore
+  } else if (roundStatus == "playerWin") {
+    playerScore += 1
+    console.log(playerScore, compScore)
+    return playerScore;
+  }
+  }
+
+
+function tieScores () {
+
+}
 /*
+
   if (compScore > playerScore) {
     console.log("Computer Wins!!");
   } else if (playerScore > compScore) {
     console.log("Player Wins!!");
   } else {
     console.log("Looks Like a Tie!!")
-  }*/
-
-
+  }
+};
+*/
 startButton.addEventListener('click', () => {
 wrapperDiv.removeChild(startButton);
 wrapperDiv.removeChild(footer);
