@@ -2,7 +2,6 @@
     background-color: #1a1f26;
     box-sizing: border-box;
     font-family: Avenir, "Noto Sans", "Proxima Nova", Montserrat, Arial;
-
 }
 
 body {
@@ -14,6 +13,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+h1 {
+    text-align: center;
 }
 
 .startButton {
@@ -42,16 +45,6 @@ img {
     left:0;
 }
 
-h1 {
-    text-align: center;
-}
-
-.playerBoard {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
 .scoreBoard {
     display: flex;
     justify-content: space-around;
@@ -66,9 +59,14 @@ h1 {
     background-color: #1a1f26;
 }
 
-
 .round {
     padding: 30px 5px;
+}
+
+.playerBoard {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .paper {
@@ -124,7 +122,6 @@ h1 {
     border: 5px solid #f0ebdd;
     border-left: none;
     border-right: none;
-/*    border-radius: 10px;*/
 }
 
 .playAgainButton {

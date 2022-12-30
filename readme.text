@@ -1,79 +1,15 @@
 Rock Paper Scissors
 
-Rock, Paper, Scissors game that produces a random selection by the computer and requests player input for each round. The game is played over five rounds with the winner being the one with the most wins. A game can end in a tie, as can each round. If there is a tie during a round, each player gets a point.
-This was a good project to learn basic JavaScript functions as well as the effects of scope on variables. I ran into issues with the player and computer score in the loop. Initially, I declared the variables in the loop, which made them inaccessible for determining the winner. Once they were declared outside of the function, things began to work as intened. Part of my confusion was due to previous variables not working inside of the functions as intended and having to move them inside the function to work properly. Again, this was due to my limited understanding of scope when I began the project.
-I plan to revisit this later to move the game from the console to an HTML page styled in CSS in the future.
+This Rock, Paper, Scissors game produces a random selection by the computer after the player makes their choice by clicking on the image for the choice they which to make for each round. The game is played over five rounds with the winner being the one with the most round wins. A game can end in a tie, as can each round. If there is a tie during a round, neither player gets a point.
 
-Steps:
-    1. fuction called getComputerChoice that will randomly return  ‘Rock’, ‘Paper’ or ‘Scissors’
-    2. function playRound that takes two parameters playerSelection and computerSelection and returns a string declaring the winner.
-        e.g. "You Lose! Paper beates Rock!"
-        return the result, don't just consol log it
-    3. function game() which calls playRound function inside to play a 5 round game that keeps socre and reports a winner or lose at the end
-    4. use prompt() to get input from the playerSelection
+There were two parts to this project. The first portion focused on JavaScript and was displayed entirely in the console with player choice being handled by a prompt to enter text. The inputed text was then verified and formatted so that it could be used in a round. This was a good project to learn basic JavaScript functions as well as the effects of scope on variables. I ran into issues with the player and computer score in the loop. Initially, I declared the variables in the loop, which made them inaccessible for determining the winner. Once they were declared outside of the function, things began to work as intened. Part of my confusion was due to previous variables not working inside of the functions as intended and having to move them inside the function to work properly. Again, this was due to my limited understanding of scope when I began the project.
 
-Pseudo Code
+The second part of the project involved creating the player UI. This was to gain practice in manipulating the DOM and using eventListener queries. I used google a good bit to get it playing and looking as I envisioned it, and I'm quite happy with the result. 
 
-Done-getComputerChoice
-    Randomly return "Rock", "Paper" or "Scissors"
-    RNG 1-3
-        1 computerSelection = Rock
-        2 computerSelection = Paper
-        3 computerSelection = Scissors
-Done-computerSelection: from getComputerChoice
-Done-playerSelection: Player makes a choice
-    convert input case
-    get rid of whitespace before or after
-        (eventually, make it three buttons)
-    [Need to do: try again if wrong word typed
-                if not equal to Rock or Paper or Scissors
-                "Please enter Rock, Paper, or Scissors"]
-Done playRound: computer choice and player choice compared
-    same - try again
-    paper beats Rock
-        computerSelection = paper and playerSelection = rock computer wins
-        playerSelection = paper and computerSelection = rock player wins
-    rock beats Scissors
-        computerSelection = rock and playerSelection = scissors computer wins
-        playerSelection = rock and computerSelection = scissors player wins
-    scissors beat paper
-        computerSelection = scissors and playerSelection = paper computer wins
-        playerSelection = scissors and computerSelection = paper player wins
-Player wins 
-    add one to player score
-    "You Win! X beats X!"
-computer wins 
-    add one to computer score
-    "You lose! X beats X!"
-game()    
-    if playerscore = 3 player wins
-    if computerscore = 3 computer wins
-    if same score = tie
+Reworking the round function was not too difficult, but reworking the game elements took some time. I ended up completely rewriting the game functions. The initial changes that I made to my previous loop from the game played in the console ended up causing an infinite loop of rounds. I then created seperate functions for scoring and tracking the round taht would be called each time a player clicke on an icon. To end the game, I created a gameover function that was called based on the round number. If the round number was evaluated in the roundTracker as greater than 4, the scoring and game over functions are called. 
 
+I ran into a bug where the player could keep clicking the buttons and the player and computer choice would keep displaying as if new rounds were being initiated, so I created a "gameState" variable that updates to 'Over' when the gameOver function is called. I then used the variable in an if statement in my addEventLister for each button that, if active, would not call the rest of the functions attached to the event listener.
 
-12/23/22 UI UPDATES
+I also decided to add a play again button to initiate a new game. I thought this would be a bit of challenge, but I just tied the click event to a page refresh and off you go to a new game with everything reset.
 
-In our UI, the player should be able to play the game by clicking on buttons rather than typing their answer in a prompt.
-For now, remove the logic that plays exactly five rounds.
-Done Create three buttons, one for each selection. 
-Add an event listener to the buttons that call your playRound function with the correct playerSelection every time a button is clicked. (you can keep the console.logs for this step)
-Add a div for displaying results and change all of your console.logs into DOM methods.
-Display the running score, and announce a winner of the game once one player reaches 5 points.
-You will likely have to refactor (rework/rewrite) your original code to make it work for this. That’s OK! Reworking old code is an important part of a programmer’s life.
-
-
-
-so click event (#1)> show result > end of Round 1 > the waiting phase (another round only starts if P1 clicks a button) > repeat from (#1). 
-
-So add that textContent line inside the roundTracker function
-[11:00 PM]
-right after you update roundNumber
-
-That was just a quick fix. Consider separating the logic from the DOM manipulation code.
-roundNumber += 1 is part of the game logic. The rest deals with manipulating the DOM. Try separating them when you refactor your code.
-
-
-remove scoreboard
-remove p with round results
-remove RPS picture formatting
-Add winner declaration above RPS picture
+I would still like to add a hover function over each button for the player choice in the future, and clean up the display on smaller devices like cell phones, but overall, I'm very happy with how things turned out. This was a challenging but fun project in which I learned a lot, especially about variable scope, DOM manipulation, and fixing bugs and issues.
