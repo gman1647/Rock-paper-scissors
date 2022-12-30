@@ -74,12 +74,6 @@ h1 {
     padding: 22.7345px 10px;
 }
 
-.hover {
-    background-color: #f0ebdd;
-    border: none;
-    border-radius:  25px;
-}
-
 .clicked {
     border: 3px solid #f0ebdd;
     border-radius: 25px;
@@ -130,4 +124,19 @@ h1 {
     border-left: none;
     border-right: none;
 /*    border-radius: 10px;*/
+}
+
+.playAgainButton {
+    color:#f0ebdd;
+    border: 3px solid #f0ebdd;
+    text-align: center;
+    border-radius: 3px;
+    margin: 0 auto;
+    display: block;
+    font-size: 20px;
+}
+
+.hover {
+    transform: scale(1.2);
+    border: none;
 }

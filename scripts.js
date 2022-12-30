@@ -24,40 +24,84 @@ function getComputerChoice () {
   return computerSelection
 }
 
-//PLAYER CHOICE FUNCTIONS
+//Variable Definitions
+
+let playerInput = ""
 let playerScore = 0;
 let compScore = 0;
 let roundNumber = 1;
 let roundChoice = '';
 let roundStatus = '';
-let gameStarted = 'No';
+let gameState = '';
 
+//PAGE CREATION ELEMENTS
 
+//Page Layout
 
-const pcImage = document.createElement('img');
-pcImage.classList.add('compPick')
-pcImage.src = './Images/rps_pc_f0ebdd_with_1a1f26_border.png';
+const wrapperDiv = document.createElement('div');
+wrapperDiv.classList.add('wrap-all');
 
 const pageTitle = document.createElement('h1');
 pageTitle.textContent = "Rock, Paper, Scissors";
 pageTitle.style.color = "#f0ebdd";
 
+const footer = document.createElement('div');
+footer.textContent = "© GBaughman, 2022";
+footer.style.color = "#f0ebdd";
+footer.style.textAlign = "center"
+
+//Start Page
+
 const startButton = document.createElement('button');
 startButton.textContent = "Start Game";
 startButton.classList.add('startButton');
 
-const wrapperDiv = document.createElement('div');
-wrapperDiv.classList.add('wrap-all');
+document.body.appendChild(wrapperDiv);
+wrapperDiv.appendChild(pageTitle);
+wrapperDiv.appendChild(startButton)
+wrapperDiv.appendChild(footer);
+
+//Builds Gameboard After Start is Clicked
+
+startButton.addEventListener('click', () => {
+  wrapperDiv.removeChild(startButton);
+  wrapperDiv.removeChild(footer);
+  wrapperDiv.appendChild(scoreBoard);
+  scoreBoard.appendChild(round);
+  scoreBoard.appendChild(scores);
+  scores.appendChild(compScoreTracker);
+  scores.appendChild(playerScoreTracker);
+  wrapperDiv.appendChild(playerUI);
+  playerUI.appendChild(rockButton);
+  playerUI.appendChild(paperButton);
+  playerUI.appendChild(scissorsButton);
+  rockButton.appendChild(rockPicture);
+  scissorsButton.appendChild(scissorsPicture);
+  paperButton.appendChild(paperPicture);
+  wrapperDiv.appendChild(resultDisplay);
+  wrapperDiv.appendChild(footer);
+  });
+
+//Score Board
 
 const scoreBoard = document.createElement('div');
 scoreBoard.classList.add('scoreBoard');
 
-
+let round = document.createElement('p');
+round.classList.add('round');
+round.textContent = "Next Round: Round " + roundNumber;
 
 const scores = document.createElement('div');
 
+const playerScoreTracker = document.createElement('p');
+playerScoreTracker.classList.add('score')
+playerScoreTracker.textContent = "Player Score: " + playerScore;
 
+const compScoreTracker = document.createElement('p');
+compScoreTracker.classList.add('score');
+compScoreTracker.textContent = "Computer Score: " + compScore;
 
+//Player Board
 
 const playerUI = document.createElement('div');
 playerUI.classList.add('playerBoard')
@@ -81,32 +125,25 @@ scissorsButton.classList.add('buttons', 'scissors');
 scissorsButton.setAttribute('id', 'scissors')
 scissorsPicture.src = './Images/rps_scissors_f0ebdd.png';
 
-const resultDisplay = document.createElement('p');
+const pcImage = document.createElement('img');
+pcImage.classList.add('compPick')
+pcImage.src = './Images/rps_pc_f0ebdd_with_1a1f26_border.png';
 
-const footer = document.createElement('div');
-footer.textContent = "© GBaughman, 2022";
-footer.style.color = "#f0ebdd";
-footer.style.textAlign = "center"
+//Round Results
 
-document.body.appendChild(wrapperDiv);
-wrapperDiv.appendChild(pageTitle);
-wrapperDiv.appendChild(startButton)
-wrapperDiv.appendChild(footer);
-/*
-function gameStarter () {
-  if (gameStarted == "Yes") {
-    console.log('game already started')
-  } else {
-    gameStarted = "Yes";
-    playGame()
-  };
-}
-*/
-const buttons = document.querySelectorAll('.buttons');
+const resultDisplay = document.createElement('div');
+const roundResult = document.createElement('p');
+roundResult.classList.add('result');
+const roundResultChoices = document.createElement('p');
+roundResultChoices.classList.add('result');
 
-let playerInput = ""
+
+//PLAYER CHOICE FUNCTIONS
 
 rockButton.addEventListener('click', () => {
+  if (gameState == 'Over'){
+    console.log('game is over');
+  } else {
   paperButton.removeAttribute('class', 'paperClicked');
   paperButton.setAttribute('class', 'buttons');
   scissorsButton.removeAttribute('class', 'clicked');
@@ -116,24 +153,13 @@ rockButton.addEventListener('click', () => {
   playRound();
   roundTracker();
   scoring();
-
-
-//  rockButton.removeAttribute('class', 'hover');
+  }
 });
 
-
-//TO DO Add hover function
-/*
-rockButton.addEventListener('mouseover',() => {
-  rockButton.setAttribute('class', 'hover');
-})
-
-rockButton.addEventListener('mouseleave', () => {
-  rockButton.removeAttribute('class', 'hover');
-})
-*/
-
 paperButton.addEventListener('click', () => {
+  if (gameState == 'Over'){
+    console.log('game is over');
+  } else {
   paperButton.setAttribute('class', 'paperclicked');
   rockButton.removeAttribute('class', 'clicked');
   rockButton.setAttribute('class', 'buttons');
@@ -143,10 +169,14 @@ paperButton.addEventListener('click', () => {
   playRound();
   roundTracker();
   scoring();
+  }
 });
 
 scissorsButton.addEventListener('click', () => {
-  scissorsButton.setAttribute('class', 'clicked');
+  if (gameState == 'Over'){
+    console.log('game is over');
+  } else {
+  scissorsButton.setAttribute('class','clicked');
   rockButton.removeAttribute('class', 'clicked');
   rockButton.setAttribute('class', 'buttons');
   paperButton.removeAttribute('class', 'paperClicked');
@@ -155,18 +185,12 @@ scissorsButton.addEventListener('click', () => {
   playRound();
   roundTracker();
   scoring();
+  }
 });
 
 //ROUND AND GAME FUNCTIONS
 
 //playRound: Plays one round of Rock Paper Scissors
-
-
-const roundResult = document.createElement('p');
-roundResult.classList.add('result');
-
-const roundResultChoices = document.createElement('p');
-roundResultChoices.classList.add('result');
 
 function playRound () {
   let playerChoice = playerInput;
@@ -187,13 +211,16 @@ function playRound () {
     roundResult.textContent ="Player Wins!";
     roundResultChoices.textContent = playerChoice + " beats " + computerChoice + "!! You win!";;
     resultDisplay.appendChild(roundResult);
+    resultDisplay.appendChild(roundResultChoices);
     roundStatus = 'playerWin'
   } else {
     console.log("round broke")
   } return roundStatus;
 };
 
-//playGame: Plays a game for five rounds
+//GAME FUNCTIONS
+
+//Tracks and Displays Game Rounds
 
 function roundTracker () {
   if (roundNumber < 5) {
@@ -206,10 +233,7 @@ function roundTracker () {
 };  
 }
 
-let round = document.createElement('p');
-round.classList.add('round');
-round.textContent = "Next Round: Round " + roundNumber;
-
+//Keeps and Displays Game Score
 
 function scoring () {
   if (roundStatus == "Tie") {
@@ -224,22 +248,26 @@ function scoring () {
   }
   }
 
-  const playerScoreTracker = document.createElement('p');
-  playerScoreTracker.classList.add('score')
-  playerScoreTracker.textContent = "Player Score: " + playerScore;
-  
-  const compScoreTracker = document.createElement('p');
-  compScoreTracker.classList.add('score');
-  compScoreTracker.textContent = "Computer Score: " + compScore;
+//Triggers Game Over State
 
 function gameOver () {
   wrapperDiv.removeChild(scoreBoard);
   wrapperDiv.removeChild(resultDisplay);
+  const gameOverArea = document.createElement('div');
   const gameOverText = document.createElement('p');
   gameOverText.textContent = 'Game Over';
-  wrapperDiv.insertBefore(gameOverText, playerUI);
   gameOverText.classList.add('gameOver');
-  console.log("Game Over")
+  const playAgainButton = document.createElement('button');
+  playAgainButton.textContent = 'Play Again?'
+  playAgainButton.classList.add('playAgainButton')
+  wrapperDiv.insertBefore(gameOverArea, playerUI);
+  gameOverArea.appendChild(gameOverText);
+  gameOverArea.appendChild(playAgainButton);
+  console.log(roundNumber);
+  playAgainButton.addEventListener ('click', () => {
+    playAgain()
+    });
+  gameState = 'Over';
   if (compScore > playerScore) {
     const gameOverResults = document.createElement('p');
     gameOverResults.textContent = 'Computer Wins ' + compScore + " to " + playerScore;
@@ -252,27 +280,27 @@ function gameOver () {
     wrapperDiv.insertBefore(gameOverResults, footer);
   } else {
     const gameOverResults = document.createElement('p');
-    gameOverResults.textContent = 'It\'s a tie!';
+    gameOverResults.textContent = 'It\'s a tie! ' + playerScore + " to " + compScore;
     gameOverResults.classList.add('result');
     wrapperDiv.insertBefore(gameOverResults, footer);
   }
 }
 
-startButton.addEventListener('click', () => {
-wrapperDiv.removeChild(startButton);
-wrapperDiv.removeChild(footer);
-wrapperDiv.appendChild(scoreBoard);
-scoreBoard.appendChild(round);
-scoreBoard.appendChild(scores);
-scores.appendChild(compScoreTracker);
-scores.appendChild(playerScoreTracker);
-wrapperDiv.appendChild(playerUI);
-playerUI.appendChild(rockButton);
-playerUI.appendChild(paperButton);
-playerUI.appendChild(scissorsButton);
-rockButton.appendChild(rockPicture);
-scissorsButton.appendChild(scissorsPicture);
-paperButton.appendChild(paperPicture);
-wrapperDiv.appendChild(resultDisplay);
-wrapperDiv.appendChild(footer);
-});
+//Asks if player wants to play again
+
+function playAgain () {
+  location.reload();
+}
+
+//TO DO Add hover function
+
+/*rockButton.addEventListener('mouseover',() => {
+  rockButton.setAttribute('class', 'hover');
+})
+
+rockButton.addEventListener('mouseleave', () => {
+  rockButton.removeAttribute('class', 'hover');
+  rockButton.setAttribute('class', 'buttons');
+  rockButton.setAttribute('class', 'rock');
+})
+*/
