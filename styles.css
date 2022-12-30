@@ -5,6 +5,9 @@
 
 }
 
+body {
+    margin: 0;
+}
 .wrap-all {
     min-height: 100vh;
     display: flex;
@@ -124,5 +127,7 @@ h1 {
     font-size: 50px;
     font-weight: 900;
     border: 5px solid #f0ebdd;
-    border-radius: 10px;
+    border-left: none;
+    border-right: none;
+/*    border-radius: 10px;*/
 }

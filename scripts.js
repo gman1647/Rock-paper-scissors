@@ -198,16 +198,17 @@ function playRound () {
 function roundTracker () {
   if (roundNumber < 5) {
     roundNumber += 1;
-    round.textContent = "Round Number " + roundNumber;
+    round.textContent = "Next Round: Round " + roundNumber;
     return roundNumber;
   } else {
+    scoring();
     gameOver();
 };  
 }
 
 let round = document.createElement('p');
 round.classList.add('round');
-round.textContent = "Round Number " + roundNumber;
+round.textContent = "Next Round: Round " + roundNumber;
 
 
 function scoring () {
@@ -234,14 +235,6 @@ function scoring () {
 function gameOver () {
   wrapperDiv.removeChild(scoreBoard);
   wrapperDiv.removeChild(resultDisplay);
-/*  scissorsButton.removeAttribute('class', 'clicked');
-  scissorsButton.setAttribute('class', 'buttons');
-  rockButton.removeAttribute('class', 'clicked');
-  rockButton.setAttribute('class', 'buttons');
-  paperButton.removeAttribute('class', 'paperClicked');
-  paperButton.setAttribute('class', 'buttons');
-  pcImage.classList.remove('compPick')
-  pcImage.classList.add('compPickRemove');  */
   const gameOverText = document.createElement('p');
   gameOverText.textContent = 'Game Over';
   wrapperDiv.insertBefore(gameOverText, playerUI);
