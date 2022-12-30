@@ -8,6 +8,7 @@
 body {
     margin: 0;
 }
+
 .wrap-all {
     min-height: 100vh;
     display: flex;
@@ -135,8 +136,9 @@ h1 {
     display: block;
     font-size: 20px;
 }
-
+/*
 .hover {
     transform: scale(1.2);
     border: none;
 }
+*/
